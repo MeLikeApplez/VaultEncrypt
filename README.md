@@ -6,7 +6,7 @@ Vault Encrypt is a simple command line utility to encrypt and decrypt files usin
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/MeLikeApplez/VaultEncrypt.git
 ```
 
 Go to the project directory

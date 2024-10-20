@@ -6,7 +6,7 @@ Vault Encrypt is a simple command line utility to encrypt and decrypt files usin
 Clone the project
 
 ```bash
-  git clone https://github.com/MeLikeApplez/VaultEncrypt.git
+  git clone https://link-to-project
 ```
 
 Go to the project directory
@@ -72,3 +72,15 @@ Install dependencies
 | -b --backup | Creates a backup encrypted file. Just a copy of the encrypted file |
 | -s --skipHash | Skips hash and SHA256 check when verifying decryption. Use only when verification needs to be skipped |
 
+
+## Usage/Examples
+- Encryption
+```bash
+node ./Main.js -i "./myFolder" -o "/myOutput/encryptFileName" -p "mySecretPassword" --encrypt
+t "image/*" --removeOriginal
+```
+- Decryption
+```bash
+node ./Main.js -i "./myFolder/encryptFileName.encjs" -o "/myOutput" -p "mySecretPassword" --decrypt
+--removeOriginal
+```

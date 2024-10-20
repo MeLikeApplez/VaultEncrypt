@@ -105,6 +105,10 @@ async function EncryptData(inputPath, outputPath, password, mimeTypes, removeOri
         if(Array.isArray(folderTree?.children)) {
             const tempDirScan = await dree.scanAsync(TEMP_ENCRYPT_DIR)
 
+            const existingOutput = folderTree.children.some(f => f.name === path.basename(outputPath) + ENCRYPTION_EXTENSTION)
+
+            if(existingOutput) return console.error(`[Output Name Error]: "${outputPath}" name already exists! Choose another name!`)
+
             if(tempDirScan === null) {
                 await fsPromise.mkdir(TEMP_ENCRYPT_DIR)
             }

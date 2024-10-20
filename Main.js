@@ -52,8 +52,8 @@ async function main() {
     if(args.input === null || args.output === null) return console.error('Input directory and Output directory must be set! ')
 
     if(args.password === null) return console.error('[Required] Missing or Invalid password!')
-    if(!Array.isArray(args?.fileTypes) || args?.fileTypes?.length === 0 && args.encrypt) {
-        return console.error('[Required] Missing file types to encrypt!')
+    if(!Array.isArray(args?.fileTypes) || args?.fileTypes?.length === 0) {
+        if(args.encrypt) return console.error('[Required] Missing file types to encrypt!')
     }
 
     if(!args.encrypt && !args.decrypt) {

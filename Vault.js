@@ -104,8 +104,13 @@ async function EncryptData(inputPath, outputPath, password, mimeTypes, removeOri
 
         if(Array.isArray(folderTree?.children)) {
             const tempDirScan = await dree.scanAsync(TEMP_ENCRYPT_DIR)
+            const baseOutputFileName = path.basename(outputPath)
 
-            const existingOutput = folderTree.children.some(f => f.name === path.basename(outputPath) + ENCRYPTION_EXTENSTION)
+            const existingOutput = folderTree.children.some(f => (f.name === baseOutputFileName + ENCRYPTION_EXTENSTION) || (
+                f.name === baseOutputFileName + '-backup.encjs'
+            ) || (
+                f.name === baseOutputFileName + '-encjshash.json'
+            ))
 
             if(existingOutput) return console.error(`[Output Name Error]: "${outputPath}" name already exists! Choose another name!`)
 
@@ -243,7 +248,7 @@ async function DecryptData(inputPath, outputPath, password, removeOriginal=false
             const configDigest = Buffer.from(configData.sha256, 'hex')
 
             if(!crypto.timingSafeEqual(digest, configDigest)) {
-                return console.error('Password hash check failed! Incorrect password!\n')
+                return console.error('SHA256 hash check failed!\n')
             } else {
                 console.log(
                     clc.greenBright('SHA256 hash check passed!\n')
